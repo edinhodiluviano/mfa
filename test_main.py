@@ -1,3 +1,5 @@
+import os
+
 import pyotp
 import pyperclip
 
@@ -60,3 +62,14 @@ def test_get_code_put_result_in_clipboard_for_a():
     expected = main.get_code('a', mock_load)
     given = pyperclip.paste()
     assert given == expected
+
+
+def test_gen_scripts_returns_none(tmp_path):
+    r = main.gen_scripts(dest=tmp_path, _load_func=mock_load)
+    assert r is None
+
+
+def test_gen_scripts_create_3_files(tmp_path):
+    main.gen_scripts(dest=tmp_path, _load_func=mock_load)
+    files = os.listdir(tmp_path)
+    assert set(files) == {'mfa_a', 'mfa_b', 'mfa_c_raw'}
