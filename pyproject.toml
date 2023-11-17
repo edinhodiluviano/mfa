@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "mfa"
+version = "0.1.0"
+description = "Time based tokens directly on your terminal"
+authors = ["Edson"]
+license = "GPLv3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyotp = "^2.9.0"
+pyperclip = "^1.8.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
