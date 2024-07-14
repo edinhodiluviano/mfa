@@ -10,6 +10,7 @@ readme = "README.md"
 python = "^3.11"
 pyotp = "^2.9.0"
 pyperclip = "^1.8.2"
+fire = "^0.6.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -19,3 +20,7 @@ pytest-cov = "^4.1.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = "-vvv --cov-report=term-missing --cov=main"
+log_level = "DEBUG"

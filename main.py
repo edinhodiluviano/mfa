@@ -6,6 +6,7 @@ import stat
 import sys
 from pathlib import Path
 
+import fire
 import pyotp
 import pyperclip
 
@@ -68,10 +69,4 @@ def gen_scripts(dest: Path = Path('.'), _load_func: callable = _load):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) >= 2:
-        func = sys.argv[1]
-        if func == 'gen_scripts':
-            gen_scripts()
-        elif func == 'get_code' and len(sys.argv) >= 3:
-            key = sys.argv[2]
-            get_code(key)
+    fire.Fire()
