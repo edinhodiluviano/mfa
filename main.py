@@ -69,4 +69,7 @@ def gen_scripts(dest: Path = Path('.'), _load_func: callable = _load):
 
 
 if __name__ == '__main__':
-    fire.Fire()
+    fire.Fire({
+        'gen_scripts': gen_scripts,
+        'get_code': get_code,
+    })
