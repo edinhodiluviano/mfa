@@ -3,7 +3,7 @@ Time based tokens directly on your terminal
 
 
 # Getting started
-- Copy the `.env_sample` file to a `.env`
+- Copy the `env_template` file to a `.env`
 - Erase the dumb keys in there and insert yours
 - Create a python venv and install the dependencies (`poetry install`)
 - run a `python main.py get_code <key>` with your key to get one code
