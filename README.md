@@ -13,3 +13,8 @@ Time based tokens directly on your terminal
 - run `./main.py gen_scripts` to generate one executable for each token
 - copy all those scripts to ~/.local/bin/
 - just use `mfa_key` in any terminal to get your code both on the screen and on the clipboard
+
+
+# External dependencies for Debian
+- pyperclip package depends on one of xclip or xsel
+- apt install xclip OR xsel
