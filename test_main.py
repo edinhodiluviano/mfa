@@ -19,7 +19,7 @@ def mock_load():
 
 
 def test_read_lines_return_list_with_correct_content():
-    r = main._read_lines(filename='.env_sample')
+    r = main._read_lines(filename='env_template')
     expected = [
         'github=55555555555555555555555555555555',
         'google=55555555555555555555555555555555',
