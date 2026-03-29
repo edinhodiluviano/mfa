@@ -10,6 +10,6 @@ Time based tokens directly on your terminal
 
 
 # Using it everywhere
-- run `python main.py gen_scripts` to generate one executable for each token
+- run `./main.py gen_scripts` to generate one executable for each token
 - copy all those scripts to ~/.local/bin/
 - just use `mfa_key` in any terminal to get your code both on the screen and on the clipboard
