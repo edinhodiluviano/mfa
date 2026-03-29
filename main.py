@@ -11,7 +11,7 @@ import pyotp
 import pyperclip
 
 
-def _read_lines(filename: str = '.env') -> list[str]:
+def _read_lines(filename: str) -> list[str]:
     file = os.path.dirname(os.path.realpath(__file__))
     file = Path(file) / filename
     text = file.read_text()
@@ -20,21 +20,18 @@ def _read_lines(filename: str = '.env') -> list[str]:
     return lines
 
 
-def _load(_line_reader_func: callable = _read_lines) -> dict:
+def _load(filename: str = '.env') -> dict:
     """Loads 2fa codes from file to a dict"""
-    lines = _line_reader_func()
+    lines = _read_lines(filename)
     lines = [i.split('=') for i in lines if i != '']
     d = {i[0]: i[1] for i in lines}
     return d
 
 
-def get_code(
-    name: str,
-    _load_func: callable = _load,
-):
+def get_code(name: str):
     """Print the OTP code to screen and put it into memory."""
 
-    tokens = _load_func()
+    tokens = _load()
 
     if name.endswith('_raw'):
         code = tokens[name]
@@ -54,12 +51,12 @@ def get_code(
     return code
 
 
-def gen_scripts(dest: Path = Path('.'), _load_func: callable = _load):
+def gen_scripts(dest: Path = Path('.')):
     python_path = sys.executable
     this_file = os.path.realpath(__file__)
     this_folder = os.path.dirname(this_file)
     this_file = Path(this_folder) / this_file
-    token = _load_func()
+    token = _load()
     for key in token.keys():
         filename = dest / f'mfa_{key}'
         contents = f'{python_path} {this_file} get_code {key}'
