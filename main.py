@@ -11,20 +11,18 @@ import pyotp
 import pyperclip
 
 
-def _read_lines(filename: str) -> list[str]:
-    file = os.path.dirname(os.path.realpath(__file__))
-    file = Path(file) / filename
-    text = file.read_text()
-    lines = text.split('\n')
-    lines = [li for li in lines if li != '']
-    return lines
-
-
 def _load(filename: str = '.env') -> dict:
     """Loads 2fa codes from file to a dict"""
-    lines = _read_lines(filename)
-    lines = [i.split('=') for i in lines if i != '']
-    d = {i[0]: i[1] for i in lines}
+    if not os.path.isabs(filename):
+        filename = os.path.dirname(os.path.realpath(__file__)) + '/' + filename
+
+    file = Path(filename)
+    with open(file) as f:
+        d = {
+            line.split('=')[0]: line.split('=')[1].strip('\n')
+            for line in f
+            if line.strip('\n') != ''
+        }
     return d
 
 
